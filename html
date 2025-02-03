@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centered Red Box</title>
+  <!-- Import Dancing Script font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      overflow: hidden;
+    }
+    .container {
+      position: relative;
+      width: 25vw;
+      height: 30vh;
+    }
+    .hidden-box {
+      width: 100%;
+      height: 100%;
+      background-color: pink;
+      position: absolute;
+      top: 0;
+      transition: transform 1s ease-in-out, width 1.5s ease-in-out, height 1.5s ease-in-out;
+      z-index: 0;
+    }
+    .red-box {
+      width: 100%;
+      height: 100%;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      transition: transform 0.5s ease-in-out;
+      z-index: 1;
+    }
+    .dashed-box {
+      width: 90%;
+      height: 90%;
+      border: 3px dashed pink;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .text {
+      position: absolute;
+      color: white;
+      font-size: 2em;
+      font-weight: bold;
+      font-style: italic;
+      font-family: 'Dancing Script', cursive;
+    }
+    .heart {
+      position: absolute;
+      font-size: 2em;
+      color: red;
+      animation: floatUp 2s linear infinite;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+    @keyframes zoomIn {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(2);
+      }
+    }
+    .valentine-text {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1em;
+      font-weight: bold;
+      font-family: 'Dancing Script', cursive;
+      color: black;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .button-container {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .yes-button, .no-button {
+      font-size: 1.5em;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .yes-button {
+      background-color: green;
+      color: white;
+    }
+    .no-button {
+      background-color: red;
+      color: white;
+    }
+    .valentine-image {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px;
+      height: auto;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .no-emoji {
+      position: absolute;
+      font-size: 3em;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    /* Container for the heart with overlaid text */
+    .center-heart {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      pointer-events: none;
+      animation: heartZoom 1s forwards;
+      width: 100px;
+      height: 100px;
+    }
+    /* The heart emoji element */
+    .heart-emoji {
+      display: block;
+      font-size: 3em;
+      text-align: center;
+      line-height: 1;
+    }
+    /* The text over the heart */
+    .heart-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      font-size: 0.8em;
+      text-shadow: 1px 1px 2px black;
+      white-space: nowrap;
+    }
+    /* Style for the word "love" */
+    .red-text {
+      color: red;
+    }
+    @keyframes heartZoom {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(6);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" onclick="toggleBoxes()">
+    <div class="hidden-box" id="hiddenBox">
+      <div class="valentine-text" id="valentineText">Will you be my valentine? 😝😊</div>
+      <img src="https://i.postimg.cc/RV2JG1KH/meandbaeee.jpg" alt="Valentine Image" class="valentine-image" id="valentineImage">
+      <div class="button-container">
+        <button class="yes-button" onclick="answerYes(event)">Yes!</button>
+        <button class="no-button" onclick="answerNo()">No.</button>
+        <div class="no-emoji" id="noEmoji">🖕</div>
+      </div>
+    </div>
+    <div class="red-box" id="redBox">
+      <div class="dashed-box"></div>
+      <div class="text">For Scarlett</div>
+    </div>
+  </div>
+
+  <script>
+    function answerNo() {
+      let noButton = document.querySelector('.no-button');
+      let noEmoji = document.getElementById('noEmoji');
+      noEmoji.style.left = (noButton.offsetLeft + noButton.offsetWidth / 2 - 20) + 'px';
+      noEmoji.style.top = (noButton.offsetTop - 10) + 'px';
+      noEmoji.style.opacity = '1';
+      setTimeout(() => { noEmoji.style.opacity = '0'; }, 1000);
+    }
+
+    function toggleBoxes() {
+      document.getElementById('hiddenBox').style.transform = 'translateY(-20%)';
+      setTimeout(() => {
+        document.getElementById('redBox').style.transform = 'translateY(300%)';
+        createHearts();
+        setTimeout(() => {
+          document.getElementById('hiddenBox').style.animation = 'zoomIn 1s forwards';
+          setTimeout(() => {
+            document.getElementById('valentineText').style.opacity = '1';
+            document.getElementById('valentineImage').style.opacity = '1';
+            document.querySelector('.button-container').style.opacity = '1';
+          }, 500);
+        }, 700);
+      }, 500);
+    }
+
+    function createHearts() {
+      for (let i = 0; i < 20; i++) {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 1.5 + 1.5) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
+      }
+    }
+
+    function answerYes(event) {
+      // Prevent the container's onclick from triggering
+      event.stopPropagation();
+
+      let image = document.getElementById('valentineImage');
+      image.src = 'https://i.postimg.cc/z3Y5HfHV/heh.jpg'; 
+      setTimeout(() => {
+        let centerHeart = document.createElement("div");
+        centerHeart.classList.add("center-heart");
+        centerHeart.innerHTML = `
+          <span class="heart-emoji">❤️</span>
+          <span class="heart-text">I <span class="red-text">love</span> you</span>
+        `;
+        document.getElementById("hiddenBox").appendChild(centerHeart);
+        setTimeout(() => {
+          centerHeart.remove();
+        }, 2000);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
