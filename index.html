@@ -19,8 +19,8 @@
     }
     .container {
       position: relative;
-      width: 25vw;    /* Adjusts relative to viewport width */
-      height: 30vh;   /* Adjusts relative to viewport height */
+      width: 25vw;    /* Relative to viewport width */
+      height: 30vh;   /* Relative to viewport height */
     }
     .hidden-box {
       width: 100%;
@@ -123,7 +123,7 @@
       top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 150px;
+      width: 150px;   /* Default fixed width */
       height: auto;
       opacity: 0;
       transition: opacity 1s ease-in-out;
@@ -178,28 +178,24 @@
         opacity: 1;
       }
     }
-    /* Media Query for Smaller Screens */
+    /* Media Query for Smaller Screens (applies only on devices with a viewport width <= 600px) */
     @media (max-width: 600px) {
       .container {
         width: 80vw;
         height: 40vh;
       }
-      /* Scale down the image */
+      /* Scale down the image so that it fits within the container */
       .valentine-image {
-        width: 100px;
+        width: 80%;        /* Takes up 80% of the container's width */
+        max-width: 100%;   /* Never exceeds container width */
+        height: auto;
       }
       /* Scale down the yes/no buttons */
       .yes-button, .no-button {
         font-size: 1.2em;
         padding: 8px 16px;
       }
-      /* Optionally adjust the heart elements */
-      .heart-emoji {
-        font-size: 4vw;
-      }
-      .heart-text {
-        font-size: 3vw;
-      }
+      /* You can adjust other elements here if needed */
     }
   </style>
 </head>
@@ -259,7 +255,6 @@
     }
 
     function answerYes(event) {
-      // Prevent the container's onclick from triggering
       event.stopPropagation();
       let image = document.getElementById('valentineImage');
       image.src = 'https://i.postimg.cc/z3Y5HfHV/heh.jpg';
