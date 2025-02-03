@@ -15,11 +15,12 @@
       align-items: center;
       background-color: #f0f0f0;
       overflow: hidden;
+      font-family: 'Dancing Script', cursive;
     }
     .container {
       position: relative;
-      width: 25vw;
-      height: 30vh;
+      width: 25vw;    /* Uses viewport width */
+      height: 30vh;   /* Uses viewport height */
     }
     .hidden-box {
       width: 100%;
@@ -56,7 +57,6 @@
       font-size: 2em;
       font-weight: bold;
       font-style: italic;
-      font-family: 'Dancing Script', cursive;
     }
     .heart {
       position: absolute;
@@ -89,7 +89,6 @@
       transform: translate(-50%, -50%);
       font-size: 1em;
       font-weight: bold;
-      font-family: 'Dancing Script', cursive;
       color: black;
       opacity: 0;
       transition: opacity 1s ease-in-out;
@@ -161,12 +160,11 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: white;
-      font-family: 'Dancing Script', cursive;
       font-size: 0.8em;
       text-shadow: 1px 1px 2px black;
       white-space: nowrap;
     }
-    /* Style for the word "love" */
+    /* Style for the word "love" to appear in red */
     .red-text {
       color: red;
     }
@@ -176,8 +174,28 @@
         opacity: 0;
       }
       100% {
-        transform: translate(-50%, -50%) scale(6);
+        transform: translate(-50%, -50%) scale(1.5);
         opacity: 1;
+      }
+    }
+    /* Media Query for Smaller Screens */
+    @media (max-width: 600px) {
+      .container {
+        width: 80vw;
+        height: 40vh;
+      }
+      .yes-button, .no-button {
+        font-size: 1.2em;
+        padding: 8px 16px;
+      }
+      .valentine-image {
+        width: 100px;
+      }
+      .heart-emoji {
+        font-size: 4vw;
+      }
+      .heart-text {
+        font-size: 3vw;
       }
     }
   </style>
@@ -198,7 +216,7 @@
       <div class="text">For Scarlett</div>
     </div>
   </div>
-
+  
   <script>
     function answerNo() {
       let noButton = document.querySelector('.no-button');
@@ -238,11 +256,9 @@
     }
 
     function answerYes(event) {
-      // Prevent the container's onclick from triggering
       event.stopPropagation();
-
       let image = document.getElementById('valentineImage');
-      image.src = 'https://i.postimg.cc/z3Y5HfHV/heh.jpg'; 
+      image.src = 'https://i.postimg.cc/z3Y5HfHV/heh.jpg';
       setTimeout(() => {
         let centerHeart = document.createElement("div");
         centerHeart.classList.add("center-heart");
@@ -254,7 +270,7 @@
         setTimeout(() => {
           centerHeart.remove();
         }, 2000);
-      }, 1500);
+      }, 3000);
     }
   </script>
 </body>
