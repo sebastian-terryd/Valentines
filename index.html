@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Centered Red Box</title>
-  <!-- Import Dancing Script font from Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html, body {
@@ -15,12 +14,11 @@
       align-items: center;
       background-color: #f0f0f0;
       overflow: hidden;
-      font-family: 'Dancing Script', cursive;
     }
     .container {
       position: relative;
-      width: 25vw;    
-      height: 30vh;   
+      width: 25vw;
+      height: 30vh;
     }
     .hidden-box {
       width: 100%;
@@ -57,6 +55,7 @@
       font-size: 2em;
       font-weight: bold;
       font-style: italic;
+      font-family: 'Dancing Script', cursive;
     }
     .heart {
       position: absolute;
@@ -89,6 +88,7 @@
       transform: translate(-50%, -50%);
       font-size: 1em;
       font-weight: bold;
+      font-family: 'Dancing Script', cursive;
       color: black;
       opacity: 0;
       transition: opacity 1s ease-in-out;
@@ -123,7 +123,7 @@
       top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: auto;
+      width: 150px;
       height: auto;
       opacity: 0;
       transition: opacity 1s ease-in-out;
@@ -134,7 +134,6 @@
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
     }
-    /* Container for the heart with overlaid text */
     .center-heart {
       position: absolute;
       left: 50%;
@@ -146,7 +145,6 @@
       width: 100px;
       height: 100px;
     }
-    /* The heart emoji element */
     .heart-emoji {
       display: block;
       font-size: 3em;
@@ -160,11 +158,11 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: white;
+      font-family: 'Dancing Script', cursive;
       font-size: 0.8em;
       text-shadow: 1px 1px 2px black;
       white-space: nowrap;
     }
-    /* Style for the word "love" to appear in red */
     .red-text {
       color: red;
     }
@@ -174,28 +172,9 @@
         opacity: 0;
       }
       100% {
-        transform: translate(-50%, -50%) scale(1.5);
+        transform: translate(-50%, -50%) scale(6);
         opacity: 1;
       }
-    }
-    /* Media Query for Smaller Screens (applies only on devices with a viewport width <= 600px) */
-    @media (max-width: 600px) {
-      .container {
-        width: 80vw;
-        height: 40vh;
-      }
-      /* Scale down the image so that it fits within the container */
-      .valentine-image {
-        width: 80%;        /* Takes up 80% of the container's width */
-        max-width: 100%;   /* Never exceeds container width */
-        height: auto;
-      }
-      /* Scale down the yes/no buttons */
-      .yes-button, .no-button {
-        font-size: 1.2em;
-        padding: 8px 16px;
-      }
-      /* You can adjust other elements here if needed */
     }
   </style>
 </head>
@@ -215,7 +194,7 @@
       <div class="text">For Scarlett</div>
     </div>
   </div>
-  
+
   <script>
     function answerNo() {
       let noButton = document.querySelector('.no-button');
@@ -256,8 +235,9 @@
 
     function answerYes(event) {
       event.stopPropagation();
+
       let image = document.getElementById('valentineImage');
-      image.src = 'https://i.postimg.cc/z3Y5HfHV/heh.jpg';
+      image.src = 'https://i.postimg.cc/z3Y5HfHV/heh.jpg'; 
       setTimeout(() => {
         let centerHeart = document.createElement("div");
         centerHeart.classList.add("center-heart");
@@ -269,7 +249,7 @@
         setTimeout(() => {
           centerHeart.remove();
         }, 2000);
-      }, 3000);
+      }, 1500);
     }
   </script>
 </body>
