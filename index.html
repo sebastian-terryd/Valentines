@@ -19,8 +19,8 @@
     }
     .container {
       position: relative;
-      width: 25vw;    /* Uses viewport width */
-      height: 30vh;   /* Uses viewport height */
+      width: 25vw;    /* Adjusts relative to viewport width */
+      height: 30vh;   /* Adjusts relative to viewport height */
     }
     .hidden-box {
       width: 100%;
@@ -184,13 +184,16 @@
         width: 80vw;
         height: 40vh;
       }
+      /* Scale down the image */
+      .valentine-image {
+        width: 100px;
+      }
+      /* Scale down the yes/no buttons */
       .yes-button, .no-button {
         font-size: 1.2em;
         padding: 8px 16px;
       }
-      .valentine-image {
-        width: 100px;
-      }
+      /* Optionally adjust the heart elements */
       .heart-emoji {
         font-size: 4vw;
       }
@@ -256,6 +259,7 @@
     }
 
     function answerYes(event) {
+      // Prevent the container's onclick from triggering
       event.stopPropagation();
       let image = document.getElementById('valentineImage');
       image.src = 'https://i.postimg.cc/z3Y5HfHV/heh.jpg';
